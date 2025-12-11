@@ -45,9 +45,11 @@ jobs:
         run: isort --settings-path pyagentspec/pyproject.toml --check-only pyagentspec/
 
       - name: "Flake8 linter checks"
+        if: matrix.python-version != '3.14'
         run: flake8 --select C801 pyagentspec/
 
       - name: "Flake8 copyright checks"
+        if: matrix.python-version != '3.14'
         run: flake8 --select C801 --copyright-check --copyright-regexp="# Copyright © [0-9]{4}(, [0-9]{4})* Oracle and/or its affiliates.\n#\n# This software is under the Apache License 2.0\n# \(LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0\) or Universal Permissive License\n# \(UPL\) 1.0 \(LICENSE-UPL or https://oss.oracle.com/licenses/upl\), at your option." pyagentspec/
 
       - name: "Bandit security checks"
