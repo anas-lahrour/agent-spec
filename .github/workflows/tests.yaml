@@ -56,7 +56,7 @@ jobs:
         run: bandit -c bandit.yaml -r pyagentspec/
 
       - name: "Mypy static type checking"
-        if: matrix.python-version != '3.13'
+        if: matrix.python-version != '3.13' && matrix.python-version != '3.14'
         run: mypy pyagentspec/ --config-file pyagentspec/pyproject.toml --exclude pyagentspec/tests_fuzz
 
       - name: "Run tests"
